@@ -9,8 +9,8 @@ experiments:
     whiten: False
 
     dataset_num: 2
-    data_type: "pdb"                 # alanine dipeptide: "pdb"   "pdb_in"
-    data_name: "pdb"                 # alanine dipeptide: "pdb"   "pdb_in"
+    data_type: "ADC"     # alanine dipeptide Cartesian Coordinates: "ADC"   alanine dipeptide Internal Coordinates: "ADI"
+    data_name: "alanine"     # alanine dipeptide: "alanine"
     data_on_cluster: "GFM"
     save_address: "GFM\\traj"
 
