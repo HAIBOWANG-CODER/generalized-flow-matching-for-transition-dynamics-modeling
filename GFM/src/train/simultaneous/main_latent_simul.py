@@ -384,11 +384,12 @@ def train_gfm(spline, flow_net, x0_loader, x1_loader, optimizer, num_epochs):
         for x0_batch, x1_batch in zip(x0_loader, x1_loader):
             optimizer.zero_grad()
 
-            x0_batch = x0_batch.to(next(spline.parameters()).device)
-            x1_batch = x1_batch.to(next(spline.parameters()).device)
-
+            x0 = x0_batch.to(next(spline.parameters()).device)
+            x1 = x1_batch.to(next(spline.parameters()).device)
             t = torch.rand(batch_size).reshape(-1,1).to(x0_batch.device)
-            x0, x1 = ot_sampler.sample_plan(x0_batch, x1_batch, replace=True)
+            
+            x0, x1 = ot_sampler.sample_plan(x0, x1, replace=True)
+            
             xt_recon, xt, ut = spline(x0, x1, t)
             # spline
             l_recon = mean_squared_error(xt, xt_recon)
