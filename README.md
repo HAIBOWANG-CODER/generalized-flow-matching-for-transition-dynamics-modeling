@@ -27,3 +27,4 @@ Set `data_on_cluster` to the project directory, i.e., `.\GFM`.
 
 ## Evaluation
 
+The data for Muller-Brown potential and alanine dipeptide will be evaluated during the test phase after training is completed. The results will be saved in the `save_address` folder.
