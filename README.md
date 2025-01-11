@@ -22,3 +22,5 @@ All the hyperparameters corresponding to each training script mentioned in the p
 ```bash
 --config_path .\GFM\src\train\simultaneous\config_latent.yaml
 ```
+
+Set `data_on_cluster` to the project directory, i.e., `.\GFM`.
