@@ -12,7 +12,6 @@ experiments:
     data_type: "ADC"     # alanine dipeptide Cartesian Coordinates: "ADC"   alanine dipeptide Internal Coordinates: "ADI"
     data_name: "alanine"     # alanine dipeptide: "alanine"
     data_on_cluster: "GFM"
-    save_address: "GFM\\traj"
 
     vae_epochs: 400
     epochs: 50
