@@ -10,8 +10,8 @@ experiments:
     dataset_num: 2
     data_type: "muller"     # alanine dipeptide Cartesian Coordinates: "ADC"   alanine dipeptide Internal Coordinates: "ADI";  toy data: "muller"
     data_name: "muller"     # alanine dipeptide: "alanine";  toy data: "muller"
-    data_on_cluster: "C:\\Users\\Administrator\\Desktop\\GFM"
-    save_address: "C:\\Users\\Administrator\\Desktop\\GFM\\traj"
+    data_on_cluster: "GFM"
+    save_address: "GFM\\traj"
 
     metric_epochs: 400
 
