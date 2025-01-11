@@ -11,8 +11,8 @@ experiments:
     dataset_num: 2
     data_type: "pdb"                 # alanine dipeptide: "pdb"   "pdb_in"
     data_name: "pdb"                 # alanine dipeptide: "pdb"   "pdb_in"
-    data_on_cluster: "C:\\Users\\Administrator\\Desktop\\GFM"
-    save_address: "C:\\Users\\Administrator\\Desktop\\GFM\\traj"
+    data_on_cluster: "GFM"
+    save_address: "GFM\\traj"
 
     vae_epochs: 400
     epochs: 100
@@ -23,7 +23,7 @@ experiments:
     hidden_dim_deepset: [128,128,128]
     hidden_dims_encoder: [64,64,64]
 
-    batch_size: 512   # alanine dipeptide: 512
+    batch_size: 512
 
     vae_lr: 0.001
     spline_lr: 0.00001
