@@ -1,5 +1,7 @@
 # generalized-flow-matching-for-transition-dynamics-modeling
 
+![alanie dipeptide trajectory](assets/energy.png)
+
 ## Installation
 
 Use the following code to set up the runtime environment, with the required dependencies specified in the `requirements.txt` file.
