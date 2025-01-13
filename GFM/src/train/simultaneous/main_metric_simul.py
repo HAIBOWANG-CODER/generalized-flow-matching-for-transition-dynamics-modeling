@@ -41,7 +41,7 @@ class BidirectionalDataset(Dataset):
         return self.xt[idx]
 
 
-def get_bidirectional_dataloader(xt_forward_path, xt_backward_path, batch_size=32, shuffle=True):
+def get_bidirectional_dataloader(xt_forward_path, xt_backward_path, batch_size=32, shuffle=False):
     dataset_forward = BidirectionalDataset(xt_forward_path)
     dataset_backward = BidirectionalDataset(xt_backward_path)
 
