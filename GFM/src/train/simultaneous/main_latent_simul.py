@@ -23,7 +23,7 @@ from pdb_data.internal import internal_to_cartesian
 from src.resample.angles import plot_phi_psi_angles
 from src.resample.md_unbiased import plot_paths_energy
 
-wandb.init(project="latent_space_simultaneous")
+wandb.init(project="Generalized_flow_matching_simultaneous_latent_space")
 # =============================================== Load Data ===================================================== #
 
 
