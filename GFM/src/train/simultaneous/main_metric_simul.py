@@ -26,7 +26,7 @@ from pdb_data.internal import cartesian_to_internal
 from toy_data.main_2D import calculate_full_tensor_energy_and_plot
 
 
-wandb.init(project="bidirectional")
+wandb.init(project="Generalized_flow_matching_simultaneous_metric")
 
 
 class BidirectionalDataset(Dataset):
