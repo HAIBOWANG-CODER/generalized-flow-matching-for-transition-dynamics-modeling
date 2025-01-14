@@ -239,6 +239,9 @@ def generate_alanine_data(temp=300, saveFreq=20, unbiasDir="pdb_data/alanine_dat
 
 if __name__ == '__main__':
 
+
+    pdb_file_path_A = r"pdb_data\AD_A.pdb"
+     
     generate_alanine_data(create_file='x0s')
     generate_alanine_data(create_file='x1s')
 
@@ -247,4 +250,4 @@ if __name__ == '__main__':
 
     if plot:
         xt_path = torch.load(r"~\resample_data.pt")
-        plot_paths_energy(xt_path, threshold=510, last_time_threshold=1000, num_indices=100)
+        plot_paths_energy(xt_path, threshold=510, last_time_threshold=1000, num_indices=100, pdb_file_path_A=pdb_file_path_A)
