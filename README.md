@@ -29,10 +29,10 @@ python -m GFM.src.train.simultaneous.main_metic_simul.py  --config_path .\GFM\sr
 python -m GFM.src.train.simultaneous.main_latent_simul.py  --config_path .\GFM\src\train\simultaneous\config_latent.yaml
 ```
 ```
-python -m GFM.src.train.separate.main_metic_separ.py  --config_path .\GFM\src\train\simultaneous\config_separ.yaml
+python -m GFM.src.train.separate.main_metic_separ.py  --config_path .\GFM\src\train\separate\config_metric.yaml
 ```
 ```
-python -m GFM.src.train.separate.main_latent_separ.py  --config_path .\GFM\src\train\simultaneous\config_latent.yaml
+python -m GFM.src.train.separate.main_latent_separ.py  --config_path .\GFM\src\train\separate\config_latent.yaml
 ```
 
 Set `data_on_cluster` to the project directory, i.e., `.\GFM`.
