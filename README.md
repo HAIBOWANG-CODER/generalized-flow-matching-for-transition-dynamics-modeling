@@ -19,10 +19,17 @@ The alanine dipeptide data is generated using the `GFM_test\src\resample\md_unbi
 
 ## Running Experiments
 
-All the hyperparameters corresponding to each training script mentioned in the paper are stored in YAML files located in the same directory. The script uses the `--config_path` flag to specify the YAML configuration file. For example, to run the file `.\GFM\src\train\simultaneous\main_metic_simul.py`, use the following command:
+All the hyperparameters corresponding to each training script mentioned in the paper are stored in YAML files located in the same directory. The script uses the `--config_path` flag to specify the YAML configuration file. 
+There are four executable files, and their corresponding `--config_path` are as follows:
 
 ```bash
 python -m GFM.src.train.simultaneous.main_metic_simul.py  --config_path .\GFM\src\train\simultaneous\config_metric.yaml
+
+python -m GFM.src.train.simultaneous.main_latent_simul.py  --config_path .\GFM\src\train\simultaneous\config_latent.yaml
+
+python -m GFM.src.train.separate.main_metic_separ.py  --config_path .\GFM\src\train\simultaneous\config_separ.yaml
+
+python -m GFM.src.train.separate.main_latent_separ.py  --config_path .\GFM\src\train\simultaneous\config_latent.yaml
 ```
 
 Set `data_on_cluster` to the project directory, i.e., `.\GFM`.
