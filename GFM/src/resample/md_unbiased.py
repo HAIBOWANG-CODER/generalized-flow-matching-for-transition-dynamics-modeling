@@ -164,9 +164,11 @@ def plot_energies_picture(energies, indices):
 
 
 def plot_paths_energy(xt_path,
-                       threshold=2000,
-                       last_time_threshold=10000,
-                       num_indices=100):
+                        threshold=2000,
+                        last_time_threshold=10000,
+                        num_indices=100,
+                        pdb_file_path_A = r"pdb_data\AD_A.pdb"
+):
     """
     Processes the trajectory file, filters paths based on energy thresholds,
     and plots or saves the resulting paths with low energy.
@@ -177,8 +179,6 @@ def plot_paths_energy(xt_path,
     last_time_threshold (float): Energy threshold for the last point in the path.
     num_random_indices (int): Number of random indices to select for processing.
     """
-
-    pdb_file_path_A = r"pdb_data\AD_A.pdb"
 
     # Randomly select indices
     xt_path = xt_path[:, :num_indices, :]
