@@ -1,10 +1,6 @@
-import os
-import glob
 import torch
 import numpy as np
 import torch.nn as nn
-import openmm.app as app
-import openmm.unit as unit
 import torch.optim as optim
 from torchmetrics.functional import mean_squared_error
 from tqdm import tqdm
@@ -14,20 +10,10 @@ from src.resample.angles import plot_phi_psi_angles
 from src.resample.md_unbiased import plot_paths_energy
 import matplotlib.image as mpimg
 
-def read_all_pdb_files_in_directory(path):
-    all_data = []
-    pdb_files = glob.glob(os.path.join(path, '*.pdb'))
 
-    for pdb_file in pdb_files:
-        pdb = app.PDBFile(pdb_file)
-        data_x = pdb.getPositions(asNumpy=True).value_in_unit(unit.nanometer)
-        adata = data_x.flatten()
-        if len(adata) != 66:
-            adata = np.pad(adata, (0, 66 - len(adata)), 'constant')
-        adata_tensor = torch.tensor(adata, dtype=torch.float32)
-        all_data.append(adata_tensor)
-    combined_data = torch.stack(all_data)
-    return combined_data
+def load_all_data(path):
+    all_coords = torch.load(path)
+    return all_coords
 
 
 def calculate_pairwise_distance(state):
@@ -66,12 +52,21 @@ def calculate_pairwise(x0, x1, x_t, t):
 
     return pair_x_t, pairwise_t
 
+T, N, D = 501, 2000, 66
 
-xt = nn.Parameter(torch.rand(501, 2000, 66))
-t = torch.linspace(0, 1, 501)
+xt = nn.Parameter(torch.rand(T, N, D))
+t = torch.linspace(0, 1, T)
 
-x0 = read_all_pdb_files_in_directory(r"pdb_data\x0s")
-x1 = read_all_pdb_files_in_directory(r"pdb_data\x1s")
+x0 = load_all_data(r"pdb_data\alanine_data_cartesian\x0s.pt")
+x1 = load_all_data(r"pdb_data\alanine_data_cartesian\x1s.pt")
+
+x0 = torch.squeeze(x0)
+x1 = torch.squeeze(x1)
+
+indices = torch.randint(low=0, high=x1.size(0), size=(N,))
+
+x0 = x0[indices]
+x1 = x1[indices]
 
 optimizer = optim.Adam([xt], lr=0.01)
 ot_sampler = OTPlanSampler(method='exact')
@@ -111,4 +106,4 @@ img = mpimg.imread(r"background\background.png")
 plt.figure(figsize=(10, 10))
 plt.imshow(img, extent=[-np.pi, np.pi, -np.pi, np.pi], alpha=0.7)
 plot_phi_psi_angles(xt, 'r', 'Trajectories', point_size=5, skip_index=40)
-plot_paths_energy(xt, threshold=2000, last_time_threshold=10000, num_indices=100)
+plot_paths_energy(xt, threshold=2000, last_time_threshold=10000, num_indices=100, )
