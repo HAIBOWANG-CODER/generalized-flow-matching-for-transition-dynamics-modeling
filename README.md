@@ -35,7 +35,7 @@ python -m GFM.src.train.separate.main_metic_separ.py  --config_path .\GFM\src\tr
 python -m GFM.src.train.separate.main_latent_separ.py  --config_path .\GFM\src\train\separate\config_latent.yaml
 ```
 
-Set `data_on_cluster` to the project directory, i.e., `.\GFM`.
+The working paths of all four modules above are `.\GFM`. And set `data_on_cluster` to the project directory, i.e., `.\GFM`.
 
 ## Evaluation
 
