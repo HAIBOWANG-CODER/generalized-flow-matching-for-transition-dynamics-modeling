@@ -194,12 +194,12 @@ if __name__ == "__main__":
     B = torch.tensor([[0.62361133, 0.02804632]], dtype=torch.float32)
     C = torch.tensor([[-0.05004308, 0.46666032]], dtype=torch.float32)
 
-    # generate_data_and_save(A, file='x0s', num_points=2000, dt=0.0001, save_interval=1, directory=r"C:\Users\Administrator\Desktop\GFM\toy_data")
-    # generate_data_and_save(B, file='x1s', num_points=2000, dt=0.0001, save_interval=1, directory=r"C:\Users\Administrator\Desktop\GFM\toy_data")
+    generate_data_and_save(A, file='x0s', num_points=2000, dt=0.0001, save_interval=1, directory=r"C:\Users\Administrator\Desktop\GFM\toy_data")
+    generate_data_and_save(B, file='x1s', num_points=2000, dt=0.0001, save_interval=1, directory=r"C:\Users\Administrator\Desktop\GFM\toy_data")
     # generate_data_and_save(C, file='xms', num_points=4000, dt=0.0001, save_interval=1, directory=r"C:\Users\Administrator\Desktop\GFM\toy_data")
 
     plot_muller_train_data(
-        "C:/Users/Administrator/Desktop/GFM/toy_data", step=1
+        "~/GFM/toy_data", step=1
     )
 
     # Reading in 2D trajectories data
