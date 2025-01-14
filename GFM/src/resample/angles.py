@@ -165,8 +165,9 @@ def plot_phi_psi_angles(tensor,
 
 if __name__ == '__main__':
 
-    tensor_folder = r"traj\test"
-    img = mpimg.imread(r"background\background.png")
+    # The folder path where the pt file of the training result is located
+    tensor_folder = r"~"
+    img = mpimg.imread(r"~\GFM\background\background.png")
 
     # Read in a tensor of dimensions (T, N, D) containing all coordinates, and then plot the dihedral angles
     plt.figure(figsize=(10, 10))
