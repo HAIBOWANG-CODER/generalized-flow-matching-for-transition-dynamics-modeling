@@ -61,8 +61,9 @@ def plot_phi_psi_angles_from_tensor(tensor_folder,
                                     label,
                                     point_size=5,
                                     skip_index=100,
+                                    pdb_file=r"pdb_data\AD_A.pdb"，
 ):
-    pdb_file = r"pdb_data\AD_A.pdb"
+    
     topology = read_topology_from_pdb(pdb_file)
     phi_psi = phi_psi_from_mdtraj(topology)
     tensor_files = glob.glob(os.path.join(tensor_folder, '*.pt'))
@@ -113,9 +114,9 @@ def plot_phi_psi_angles(tensor,
                         label,
                         point_size=5,
                         skip_index=1,
+                        pdb_file=r"pdb_data\AD_A.pdb"，
 ):
-
-    pdb_file = r"pdb_data\AD_A.pdb"
+ 
     topology = read_topology_from_pdb(pdb_file)
     phi_psi = phi_psi_from_mdtraj(topology)
     all_phi = []
