@@ -60,7 +60,8 @@ def read_data(paths, data_type):
                     raise ValueError
                 
                 generate_data_and_save(initial_pos, file=directory, num_points=2000, dt=0.0001, save_interval=1)
-                plot_muller_train_data(paths, step=1)
+        if data_type == 'muller':
+            plot_muller_train_data(paths, step=1)
     all_data = []
     all_labels = []
 
