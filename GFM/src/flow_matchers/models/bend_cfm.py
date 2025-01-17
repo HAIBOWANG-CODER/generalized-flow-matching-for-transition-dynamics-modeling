@@ -79,9 +79,9 @@ class BendConditionalFlowMatcher(ConditionalFlowMatcher):
 
                     T = t[i] * torch.ones(x0.shape[0], dtype=x0.dtype, device=x0.device)
                     t = T.type_as(x0)
-                    # xt = self.compute_mu_t(x0, x1, t, t_min, t_max)
-                    eps = self.sample_noise_like(x0)
-                    xt = self.sample_xt(x0, x1, t, eps, t_min, t_max)
+                    xt = self.compute_mu_t(x0, x1, t, t_min, t_max)
+                    # eps = self.sample_noise_like(x0)
+                    # xt = self.sample_xt(x0, x1, t, eps, t_min, t_max)
                     xts.append(xt)
                 xt_bend_traj = torch.stack(xts)
                 return xt_bend_traj
