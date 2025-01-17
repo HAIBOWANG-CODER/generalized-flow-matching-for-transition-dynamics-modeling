@@ -476,7 +476,7 @@ def spline_network_parser(parser):
 
 def flow_network_parser(parser):
     parser.add_argument(
-        "--sigma", type=float, default=0.1, help="Sigma parameter for CFM (variance)"
+        "--sigma", type=float, default=0.01, help="Sigma parameter for CFM (variance)"
     )
     parser.add_argument(
         "--patience",
