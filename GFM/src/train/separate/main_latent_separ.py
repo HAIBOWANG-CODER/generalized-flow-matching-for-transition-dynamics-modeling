@@ -218,6 +218,23 @@ class LineSplineMLP(nn.Module):
         return self.mainnet(x)
 
 
+def dataset_name2datapath(dataset_name, data_on_cluster):
+
+    if data_on_cluster is not None:
+        if data_on_cluster is not None:
+            if dataset_name == "alanine":
+                path = f"{data_on_cluster}/pdb_data/alanine_data_cartesian"
+                return path
+
+            elif dataset_name == "muller":
+                path = f"{data_on_cluster}/toy_data"
+                return path
+        else:
+            raise ValueError("Dataset not recognized")
+    else:
+        raise ValueError("Dataset not recognized")
+
+
 class VAE(nn.Module):
     def __init__(self, encoder, decoder):
         super(VAE, self).__init__()
@@ -443,6 +460,7 @@ vae_epochs = args.vae_epochs
 spline_epochs = args.epochs
 flow_epochs = args.epochs
 data_type = args.data_type
+args.data_path = dataset_name2datapath(args.data_name, args.data_on_cluster)
 file0 = f"{args.data_path}/x0s.pt"
 file1 = f"{args.data_path}/x1s.pt"
 
