@@ -546,7 +546,7 @@ spline_net = LineSplineMLP(
     batch_norm=False,
 )
 flow_matcher_base = BendConditionalFlowMatcher(
-    spline_net=spline_net,
+    bend_net=spline_net,
     sigma=args.sigma,
     alpha=args.alpha,
 )
