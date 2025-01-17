@@ -58,9 +58,9 @@ def read_data(paths, data_type):
                     initial_pos = torch.tensor([[0.62361133, 0.02804632]], dtype=torch.float32)
                 else:
                     raise ValueError
-                plot_muller_train_data(paths, step=1)
+                
                 generate_data_and_save(initial_pos, file=directory, num_points=2000, dt=0.0001, save_interval=1)
-
+                plot_muller_train_data(paths, step=1)
     all_data = []
     all_labels = []
 
