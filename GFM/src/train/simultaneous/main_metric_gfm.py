@@ -26,7 +26,7 @@ from pdb_data.internal import cartesian_to_internal
 from toy_data.main_2D import estimation_for_muller
 
 
-wandb.init(project="bidirectional")
+wandb.init(project="metric_space_simultaneous")
 
 
 class BidirectionalDataset(Dataset):
