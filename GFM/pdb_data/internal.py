@@ -593,11 +593,11 @@ if __name__ == "__main__":
 
     internal_np = np.array(internal_coords)
     internal_tensor = torch.tensor(internal_np)
-    torch.save(internal_tensor, r"C:/Users/Administrator/Desktop/GFM/pdb_data/internal_data/x0s.pt")
+    torch.save(internal_tensor, r"./x0s.pt")
     """
     # ================================ internal to cartesian ===================================== #
     # === #
-    internal_path = r"C:\Users\Administrator\Desktop\GFM\traj\linear_internal.pt"                          # Internal coordinate data path
+    internal_path = r"./linear_internal.pt"                          # Internal coordinate data path
     internal_tensor = torch.load(internal_path)
     internal_coords = internal_tensor.reshape(-1, 66)
     internal_coords = jnp.array(internal_coords)
@@ -608,4 +608,4 @@ if __name__ == "__main__":
     cartesian_np = np.array(cartesian_coords_ex)
     cartesian_tensor = torch.tensor(cartesian_np)
     cartesian_tensor = cartesian_tensor.reshape(internal_tensor.shape[0], -1, 66)
-    torch.save(cartesian_tensor, r"C:\Users\Administrator\Desktop\GFM\traj\internal.pt")                     # Output
+    torch.save(cartesian_tensor, r"./internal.pt")                     # Output
