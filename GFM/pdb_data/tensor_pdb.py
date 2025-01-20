@@ -45,9 +45,9 @@ def remove_models_records(lines):
     return [line for line in lines if not line.startswith("MODEL")]
 
 
-pdb_file_path = r"C:\Users\Administrator\Desktop\GFM\pdb_data\AD_A.pdb"
+pdb_file_path = r"./pdb_data/AD_A.pdb"
 
-tensor_path = r"C:\Users\Administrator\Desktop\GFM\traj\best.pt"
+tensor_path = r"./traj/best.pt"
 
 extraction = False
 
@@ -98,7 +98,7 @@ def save(pdb_file_path,tensor_path):
 
                 merged_pdb_lines.extend(pdb_ext)
                 merged_pdb_lines.append('END\n')
-                temp_file_path = f"C:/Users/Administrator/Desktop/GFM/traj/traj_{j}.pdb"
+                temp_file_path = f"./traj/traj_{j}.pdb"
                 write_pdb(temp_file_path, merged_pdb_lines)
 
     else:
