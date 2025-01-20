@@ -12,6 +12,7 @@ experiments:
     data_type: "ADC"                 # alanine dipeptide: "ADC"   "ADI"
     data_name: "alanine"                 # alanine dipeptide: "alanine"
     data_on_cluster: "C:\\Users\\Administrator\\Desktop\\GFM"
+    save_address: "C:\\Users\\Administrator\\Desktop\\GFM\\traj"
 
     vae_epochs: 400
 
