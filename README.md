@@ -39,4 +39,4 @@ The working paths of all four modules above are `.\GFM`. And set `data_on_cluste
 
 ## Evaluation
 
-The data for Muller-Brown potential and alanine dipeptide will be evaluated during the test phase after training is completed. The results will be saved in the `save_address` folder.
+The data for Muller-Brown potential and alanine dipeptide will be evaluated during the test phase after training is completed. Set `save_address` to the folder where the data is saved. The results will be saved in the `save_address` folder.
