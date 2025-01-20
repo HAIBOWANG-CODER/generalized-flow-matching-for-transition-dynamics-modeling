@@ -13,8 +13,8 @@ def load_all_data(path):
     return all_coords
 
 
-x0_path = r"C:\Users\Administrator\Desktop\GFM\pdb_data\alanine_data_cartesian\x0s.pt"
-x1_path = r"C:\Users\Administrator\Desktop\GFM\pdb_data\alanine_data_cartesian\x1s.pt"
+x0_path = r"./pdb_data/alanine_data_cartesian/x0s.pt"
+x1_path = r"./pdb_data/alanine_data_cartesian/x1s.pt"
 
 x0 = load_all_data(x0_path)
 x1 = load_all_data(x1_path)
@@ -47,4 +47,4 @@ xt = torch.stack(X, dim=0)
 
 # xts = internal_to_cartesian(xt)
 
-torch.save(xt, r"C:\Users\Administrator\Desktop\GFM\traj\linear_internal.pt")
+torch.save(xt, r"./traj/linear_internal.pt")
