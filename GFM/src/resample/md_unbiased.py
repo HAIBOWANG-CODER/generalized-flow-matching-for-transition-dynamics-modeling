@@ -239,12 +239,12 @@ def generate_alanine_data(temp=300, saveFreq=20, unbiasDir="pdb_data/alanine_dat
 
 if __name__ == '__main__':
 
-    # generate_alanine_data(create_file='x0s')
-    # generate_alanine_data(create_file='x1s')
+    generate_alanine_data(create_file='x0s')
+    generate_alanine_data(create_file='x1s')
 
     # Search the path energy with different energy thresholds
     plot = True
 
     if plot:
-        xt_path = torch.load(r"C:\Users\Administrator\Desktop\GFM\traj\resample_traj\resample_data.pt")
+        xt_path = torch.load(r".\data.pt")
         plot_paths_energy(xt_path, threshold=510, last_time_threshold=1000, num_indices=100)
