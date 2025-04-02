@@ -107,4 +107,3 @@ plt.show()
 
 # MSM estimation
 # msm = [pyemma.msm.estimate_markov_model(cluster.dtrajs, lag=lag, dt_traj='0.0002 us') for lag in lags]
-print(1)
