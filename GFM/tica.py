@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 dcd_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein"  # DCD 文件路径
-topology_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein\chignolin.pdb"  # PDB 文件路径，包含分子的拓扑信息
+topology_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein\chignolin.pdb"  # PDB 文件路径
 
 dcd_files = [os.path.join(dcd_file, f) for f in os.listdir(dcd_file) if f.endswith('.dcd')]
 dcd_files.sort()
