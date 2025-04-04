@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 dcd_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein"  # DCD 文件路径
-topology_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein\chignolin.pdb"  # PDB 文件路径
+topology_file = r"E:\chignolin_results\DEShaw_research_chignolin\DESRES-Trajectory_CLN025-0-protein\DESRES-Trajectory_CLN025-0-protein\CLN025-0-protein\chignolin.pdb"  # PDB 文件路径，包含分子的拓扑信息
 
 dcd_files = [os.path.join(dcd_file, f) for f in os.listdir(dcd_file) if f.endswith('.dcd')]
 dcd_files.sort()
@@ -21,18 +21,39 @@ ref = ref_pdb.xyz
 ref_traj = md.Trajectory(ref, ref_pdb.topology)
 ref_traj.save('ref.dcd')
 
-rmsd = md.rmsd(traj, ref_pdb, 0)
+reference = md.load_dcd(dcd_file + '/CLN025-0-protein-000.dcd', top=topology_file)
+# reference = md.load_dcd('ref.dcd', top=topology_file)
 
-plt.figure(figsize=(10, 6))
-plt.hist(rmsd, bins=50, color='skyblue', edgecolor='black')
-plt.title('RMSD Distribution Histogram', fontsize=14)
-plt.xlabel('RMSD (nm)', fontsize=12)
-plt.ylabel('Frequency', fontsize=12)
-# plt.legend()
-plt.grid(True, alpha=0.3)
+CA_atoms = reference.topology.select('name CA and resid 2 to 36')
+
+rmsd = []
+
+for traj_name in dcd_files:
+    traj = md.load_dcd(traj_name, top=topology_file)
+    for element in md.rmsd(traj, reference, 1500, atom_indices=CA_atoms):
+        rmsd.append(element)
+
+# fig = plt.figure(figsize=(17, 2))
+# plt.plot(rmsd[::500])
+# plt.axis([0, 100, 0.0, 0.5])
+# plt.ylabel('RMSD(nm)')
+# plt.xlabel('Snapshot Num./500')
 # plt.show()
 
-threshold = 0.7
+
+#histogram
+fig = plt.figure(figsize=(5, 3))
+
+ax1 = fig.add_subplot(111)
+ax1.hist(rmsd[::100], density=True, bins=30, color='r', alpha=0.5, edgecolor='r')
+ax1.set_xlabel('RMSD$(\AA)$', fontsize=12)
+ax1.set_ylabel('Probability Dens.', fontsize=12)
+plt.show()
+
+# to Angstrom
+rmsd = np.array(rmsd) * 10.0
+
+threshold = 2
 
 above_threshold = rmsd > threshold
 below_threshold = rmsd <= threshold
@@ -107,3 +128,4 @@ plt.show()
 
 # MSM estimation
 # msm = [pyemma.msm.estimate_markov_model(cluster.dtrajs, lag=lag, dt_traj='0.0002 us') for lag in lags]
+print(1)
