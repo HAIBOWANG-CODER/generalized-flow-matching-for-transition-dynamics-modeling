@@ -16,11 +16,6 @@ dcd_files.sort()
 traj = md.load(dcd_files, top=topology_file)
 x = traj.xyz
 
-ref_pdb = md.load(topology_file)
-ref = ref_pdb.xyz
-ref_traj = md.Trajectory(ref, ref_pdb.topology)
-ref_traj.save('ref.dcd')
-
 reference = md.load_dcd(dcd_file + '/CLN025-0-protein-000.dcd', top=topology_file)
 # reference = md.load_dcd('ref.dcd', top=topology_file)
 
@@ -45,7 +40,7 @@ for traj_name in dcd_files:
 fig = plt.figure(figsize=(5, 3))
 
 ax1 = fig.add_subplot(111)
-ax1.hist(rmsd[::100], density=True, bins=30, color='r', alpha=0.5, edgecolor='r')
+ax1.hist(rmsd[::100], density=True, bins=30, color='g', alpha=0.5, edgecolor='r')
 ax1.set_xlabel('RMSD$(\AA)$', fontsize=12)
 ax1.set_ylabel('Probability Dens.', fontsize=12)
 plt.show()
@@ -77,46 +72,24 @@ print(f"小于等于 {threshold} 的数量: {len(below_values)} ({len(below_valu
 x0 = x[above_indices, :, :]
 x1 = x[below_indices, :, :]
 
-x0_traj = md.Trajectory(x0, ref_pdb.topology)
-x1_traj = md.Trajectory(x1, ref_pdb.topology)
-x0_traj.save('x0.dcd')
-x1_traj.save('x1.dcd')
-
 # ******************************** TICA **************************************** #
 
 features = pyemma.coordinates.featurizer(topology_file)
 features.add_residue_mindist()
 
-x0_file = 'x0.dcd'
-x1_file = 'x1.dcd'
-ref_file = 'ref.dcd'
-
-files = [dcd_files, x0_file, x1_file, ref_file]
-chunk_sizes = [x.shape[0], x0.shape[0], x1.shape[0], ref.shape[0]]
-colors = ['grey', 'red', 'blue', 'green']
-labels = ['centers', 'centers x0', 'centers x1', 'centers ref']
-markers = ['x', '.', '.', '*']
-ks = [64, 256, 256, 1]
-sizes = [30, 30, 30, 500]
-
 fig, axes = plt.subplots(1, 1, figsize=(8, 8))
-
-source_dcd = pyemma.coordinates.source([dcd_files], features=features, chunk_size=chunk_sizes[0])
+source_dcd = pyemma.coordinates.source([dcd_files], features=features, chunksize=x.shape[0])
 tica = pyemma.coordinates.tica(data=source_dcd, lag=10, dim=2)
-tica_result_dcd = tica.get_output()[0]
+tica_result_d = tica.get_output()[0]
 
-for file, chunk_size, color, label, marker, k, size in zip(files, chunk_sizes, colors, labels, markers, ks, sizes):
+tica_result = tica_result_d
+x0_indices = np.random.choice(above_indices, size=300, replace=False)
+x1_indices = np.random.choice(below_indices, size=300, replace=False)
 
-    if file == dcd_files:
-        tica_result = tica_result_dcd
-        pyemma.plots.plot_free_energy(*tica_result.T, ax=axes)
+pyemma.plots.plot_free_energy(*tica_result.T, ax=axes)
 
-    else:
-        source = pyemma.coordinates.source([file], features=features, chunk_size=chunk_size)
-        data = source.get_output()[0]
-        tica_result = tica.transform(data)
-        cluster_result = pyemma.coordinates.cluster_kmeans(tica_result, k=k, max_iter=100)
-        axes.scatter(*cluster_result.clustercenters.T, marker=marker, c=color, s=size, label=label)
+axes.scatter(*tica_result[x0_indices, :].T, marker='.', c='r', s=30, label='x0')
+axes.scatter(*tica_result[x1_indices, :].T, marker='.', c='b', s=30, label='x1')
 
 axes.legend()
 axes.set_xlabel('TIC 1 / a.u.')
@@ -128,4 +101,3 @@ plt.show()
 
 # MSM estimation
 # msm = [pyemma.msm.estimate_markov_model(cluster.dtrajs, lag=lag, dt_traj='0.0002 us') for lag in lags]
-print(1)
