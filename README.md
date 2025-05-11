@@ -23,16 +23,16 @@ All the hyperparameters corresponding to each training script mentioned in the p
 There are four executable files, and their corresponding `--config_path` are as follows:
 
 ```bash
-python -m GFM.src.run.main_metic_simul.py  --config_path ./config/simultaneous/config_metric.yaml
+python -m GFM.src.run.main_metic_simul.py  --config_path ./configs/simultaneous/config_metric.yaml
 ```
 ```
-python -m GFM.src.run.main_latent_simul.py  --config_path ./config/simultaneous/config_latent.yaml
+python -m GFM.src.run.main_latent_simul.py  --config_path ./configs/simultaneous/config_latent.yaml
 ```
 ```
-python -m GFM.src.run.main_metic_separ.py  --config_path ./config/separate/config_metric.yaml
+python -m GFM.src.run.main_metic_separ.py  --config_path ./configs/separate/config_metric.yaml
 ```
 ```
-python -m GFM.src.run.main_latent_separ.py  --config_path ./config/separate/config_latent.yaml
+python -m GFM.src.run.main_latent_separ.py  --config_path ./configs/separate/config_latent.yaml
 ```
 
 The working paths of all four modules above are `.\GFM`. And set `data_on_cluster` to the project directory, i.e., `.\GFM`.
