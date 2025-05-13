@@ -22,15 +22,19 @@ The alanine dipeptide data is generated using the `GFM_test/src/resample/md_unbi
 All the hyperparameters corresponding to each training script mentioned in the paper are stored in YAML files located in the same directory. The script uses the `--config_path` flag to specify the YAML configuration file. 
 There are four executable files, and their corresponding `--config_path` are as follows:
 
+1. Run the metric-based flow matching code, training spline and velocity networks simultaneously.
 ```bash
 python -m GFM.src.run.main_metic_simul.py  --config_path ./configs/simultaneous/config_metric.yaml
 ```
+2. Run the latent space-based flow matching code, training spline and velocity networks simultaneously.
 ```
 python -m GFM.src.run.main_latent_simul.py  --config_path ./configs/simultaneous/config_latent.yaml
 ```
+3. Run the metric-based flow matching code, training spline first, then velocity network.
 ```
 python -m GFM.src.run.main_metic_separ.py  --config_path ./configs/separate/config_metric.yaml
 ```
+4. Run the latent space-based flow matching code, training spline first, then velocity network.
 ```
 python -m GFM.src.run.main_latent_separ.py  --config_path ./configs/separate/config_latent.yaml
 ```
